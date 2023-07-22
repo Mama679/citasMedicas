@@ -21,12 +21,12 @@ class MySQLDB
         }
         else
         {
-            print "Conexión Exitosa.<br>";
+           // print "Conexión Exitosa.<br>";
         }
 
         if(mysqli_set_charset($this->conn,"utf8"))
         {
-            print "Conjunto de caracteres: ".mysqli_character_set_name($this->conn).".<br>";
+            //print "Conjunto de caracteres: ".mysqli_character_set_name($this->conn).".<br>";
             
         }
         else

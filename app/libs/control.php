@@ -5,13 +5,25 @@
  * Segundo parametro: Metodo
  * Lo siguiente parametros: Parametros o valores
  */
-
  class Control{
+
+    private $controlador = "Login";
+    private $metodo = "Caratula";
+    private $parametros = [];
+
     function __construct()
     {
         //print "Bienvenid@ a la Aplicación";
         $url = $this->separarURL();
-        var_dump($url);
+        if($url != "" && file_exists('../app/controladores/'.ucwords($url[0]).".php"))
+        {
+            $this->controlador = ucwords($url[0]);
+            unset($url[0]);
+            var_dump($url);
+        }
+        //Cargamos la clase del controlador
+        require_once("../app/controladores/".ucwords($this->controlador).".php");
+        $this->controlador = new $this->controlador;
     }
 
     public function separarURL()
