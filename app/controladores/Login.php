@@ -1,17 +1,21 @@
 <?php
 class Login extends Controlador
 {
+    private $modelo;
+
     function __construct()
     {
-        print "<h1>Hola desde el Controlador Login</h1>";
+        //print "<h1>Hola desde el Controlador Login</h1>";
+        $this->modelo = $this->modelo("LoginModelo");
     }
 
     public function inicio()
     {
-        print "Hola Metodo inicio<br>";
+        $datos = [];
+        $this->vista("loginVista",$datos);
     }
 
-    public function metodoVariables()
+    /*public function metodoVariables()
     {
         if(func_num_args() > 0)
         {
@@ -31,6 +35,6 @@ class Login extends Controlador
         print $p1."<br>";
         print $p2."<br>";
         print $p3."<br>";
-    }
+    }*/
 }
 ?>
