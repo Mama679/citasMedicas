@@ -19,7 +19,6 @@
         {
             $this->controlador = ucwords($url[0]);
             unset($url[0]);
-            var_dump($url);
         }
         //Cargamos la clase del controlador
         require_once("../app/controladores/".ucwords($this->controlador).".php");
@@ -35,9 +34,9 @@
             }
         }
         //Parametros
-        $this->parametros = $url;
-        print "<br>Metodo: ".$this->metodo."<br>";
-        var_dump($this->parametros);
+        $this->parametros = $url ? array_values($url):[];
+       // print "<br>Metodo: ".$this->metodo."<br>";
+       call_user_func_array([$this->controlador, $this->metodo], $this->parametros);
     }
 
     public function separarURL()
