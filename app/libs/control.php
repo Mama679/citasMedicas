@@ -8,7 +8,7 @@
  class Control{
 
     private $controlador = "Login";
-    private $metodo = "Caratula";
+    private $metodo = "inicio";
     private $parametros = [];
 
     function __construct()
@@ -24,6 +24,20 @@
         //Cargamos la clase del controlador
         require_once("../app/controladores/".ucwords($this->controlador).".php");
         $this->controlador = new $this->controlador;
+
+        //Llamadas de metodos
+        if(isset($url[1]))
+        {
+            if(method_exists($this->controlador, $url[1]))
+            {
+                $this->metodo = $url[1];
+                unset($url[1]);
+            }
+        }
+        //Parametros
+        $this->parametros = $url;
+        print "<br>Metodo: ".$this->metodo."<br>";
+        var_dump($this->parametros);
     }
 
     public function separarURL()
